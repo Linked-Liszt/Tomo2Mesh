@@ -13,7 +13,7 @@ setup(
     author='Aniket Tekawade, Yashas Satapathy, Viktor Nikitin',
     author_email='atekawade@anl.gov',
     # Needed to actually package something
-    packages= ['tomo2mesh', 'tomo2mesh.fbp', 'tomo2mesh.misc', 'tomo2mesh.structures', 'tomo2mesh.unet3d', 'tomo2mesh.projects', 'tomo2mesh.porosity'],
+    packages=find_packages(),
     # Needed for dependencies
     install_requires=['numpy', 'pandas', 'scipy', 'h5py', 'matplotlib', 'scikit-image',\
                       'tqdm', 'ipython', 'seaborn',\
