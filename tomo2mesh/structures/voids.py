@@ -3,6 +3,7 @@
 """ 
 """ 
 
+from multiprocessing.sharedctypes import Value
 from termios import NL0
 import cupy as cp
 import numpy as np
@@ -16,7 +17,7 @@ from tifffile import imsave, imread
 import h5py
 from skimage.measure import marching_cubes
 from tomo2mesh.porosity.feret_diameter import max_feret_dm
-import pymesh
+# import pymesh # TODO: Reinstate when env setup complete. 
 from tomo2mesh.porosity.num_density import num_density
 import functools
 from multiprocessing import Pool, cpu_count
@@ -818,7 +819,8 @@ def single_void2mesh(void, spt, tex_val, edge_thresh = 0.0, b = 1, preserve_feat
 
     # Decimate
     if edge_thresh > 0:
-        verts, faces, info = pymesh.collapse_short_edges_raw(verts, faces, edge_thresh, preserve_feature = preserve_feature)
+        # verts, faces, info = pymesh.collapse_short_edges_raw(verts, faces, edge_thresh, preserve_feature = preserve_feature)
+        raise ValueError('PYMesh Temporarialy disabled. Please use edge_thresh of 0')
     
     # set texture
     texture = np.empty((len(verts),3), dtype = np.float32)
