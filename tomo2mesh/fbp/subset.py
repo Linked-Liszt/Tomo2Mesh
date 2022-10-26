@@ -247,8 +247,8 @@ def recon_patches_3d(projs, theta, center, p3d, TIMEIT = False, \
         # EXTRACT PATCHES AND SEND TO CPU
         if segmenter is not None:
             # do segmentation
-            xchunk = extract_segmented(obj_mask, cpts, p3d.wd, segmenter, segmenter_batch_size, rec_min_max, preblur)
-            # xchunk = extract_segmented_cpu(obj_mask, cpts, p3d.wd, segmenter, segmenter_batch_size, rec_min_max)
+            # xchunk = extract_segmented(obj_mask, cpts, p3d.wd, segmenter, segmenter_batch_size, rec_min_max, preblur)
+            xchunk = extract_segmented_cpu(obj_mask, cpts, p3d.wd, segmenter, segmenter_batch_size, rec_min_max)
             times.append([ntheta, nc, n, t_cpu2gpu, t_filt, t_mask, t_bp])
             pass
         else:
