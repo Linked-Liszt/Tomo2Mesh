@@ -28,7 +28,7 @@ def recon_all(projs, theta, center, nc, dark_flat = None, sinogram_order = True)
 
     # beyond this point, projs array will have shape nz, ntheta, n
     timer = TimerGPU("ms")
-    memory_pool = cp.cuda.MemoryPool()
+    memory_pool = cp.get_default_memory_pool()
     cp.cuda.set_allocator(memory_pool.malloc)
     device = cp.cuda.Device()
     
@@ -91,7 +91,7 @@ def recon_all(projs, theta, center, nc, dark_flat = None, sinogram_order = True)
         obj_out[s_chunk] = obj_gpu.get()
 
     del obj_gpu, data, theta, center    
-    cp._default_memory_pool.free_all_blocks()    
+    memory_pool.free_all_blocks()    
     
     return obj_out
 
